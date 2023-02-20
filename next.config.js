@@ -2,5 +2,9 @@
 module.exports = {
   reactStrictMode: true,
   experimental: {
-    appDir: true}
-}
+    appDir: true,
+  },
+    images: {
+      domains: ["milkykiwi.com"],
+    },
+};
