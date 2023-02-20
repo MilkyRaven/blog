@@ -43,6 +43,11 @@ function BlogList({posts}: Props) {
                         </div> */}
                     </div>
                 </div>
+                <div className="mt-5 flex-1">
+                    <p className=" line-clamp-2 text-gray-500">
+                        {post.description}
+                    </p>
+                </div>
                 </div>
             ))}
         </div>
