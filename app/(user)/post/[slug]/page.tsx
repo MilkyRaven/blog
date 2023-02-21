@@ -44,15 +44,15 @@ async function Post({ params: { slug } }: Props) {
 
     return (
         <article>
-            <section>
+            {/* <section>
                 <div>
                     <div>
-                        {/* <Image
+                        <Image
                             className="object-cover object-center mx-auto"
                             src={urlFor(post.mainImage).url()}
                             alt={post.author.name}
                             fill>
-                        </Image> */}
+                        </Image>
                     </div>
                     <section>
                         <div>
@@ -95,7 +95,7 @@ async function Post({ params: { slug } }: Props) {
                     </section>
                 </div>
             </section>
-            <PortableText value={post.body} components={RichTextComponents}></PortableText>
+            <PortableText value={post.body} components={RichTextComponents}></PortableText> */}
         </article>
     )
 }
