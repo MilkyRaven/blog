@@ -41,18 +41,21 @@ async function Post({ params: { slug } }: Props) {
 
     const post: Post = await client.fetch(query, { slug });
     console.log(post)
+    if (!post){
+        return  <div><h2>No data to show</h2></div>
+    }
 
     return (
         <article>
-            {/* <section>
+             <section>
                 <div>
                     <div>
-                        <Image
+                        {/* <Image
                             className="object-cover object-center mx-auto"
                             src={urlFor(post.mainImage).url()}
                             alt={post.author.name}
                             fill>
-                        </Image>
+                        </Image> */}
                     </div>
                     <section>
                         <div>
@@ -95,7 +98,7 @@ async function Post({ params: { slug } }: Props) {
                     </section>
                 </div>
             </section>
-            <PortableText value={post.body} components={RichTextComponents}></PortableText> */}
+            <PortableText value={post.body} components={RichTextComponents}></PortableText>
         </article>
     )
 }

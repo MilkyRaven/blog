@@ -30,6 +30,9 @@ export default async function HomePage() {
     }
 
     const posts = await client.fetch(query)
+    if (!posts){
+        return  <div><h2>No data to show</h2></div>
+    }
     return (
         <div>
             <h1 className="text-4xl">Welcome</h1>
