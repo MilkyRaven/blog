@@ -4,7 +4,7 @@ import Link from "next/link";
 function Header() {
   return (
     <header>
-        <div>This is the header</div>
+        <div className="m-4">Here it goes the Header</div>
     </header>
   )
 }

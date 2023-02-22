@@ -14,7 +14,7 @@ type Props = {
 
 export const revalidate = 60;
 
-export async function generateStaticParams(){
+export async function generateStaticParams() {
     const query = groq`*[type=='post']
     {
         slug
@@ -23,7 +23,7 @@ export async function generateStaticParams(){
     const slugs: Post[] = await client.fetch(query);
     const slugRoutes = slugs.map((slug) => slug.slug.current);
 
-    return slugRoutes.map((slug)=>({
+    return slugRoutes.map((slug) => ({
         slug,
     }));
 }
@@ -41,29 +41,31 @@ async function Post({ params: { slug } }: Props) {
 
     const post: Post = await client.fetch(query, { slug });
     console.log(post)
-    if (!post){
-        return  <div><h2>No data to show</h2></div>
+    if (!post) {
+        return <div><h2>No data to show</h2></div>
     }
 
     return (
-        <article>
-             <section>
+        <article className="m-5">
+            <section>
                 <div>
                     <div>
-                        {/* <Image
+                        <Image
                             className="object-cover object-center mx-auto"
                             src={urlFor(post.mainImage).url()}
+                            height={800}
+                            width={800}
                             alt={post.author.name}
-                            fill>
-                        </Image> */}
+                        >
+                        </Image>
                     </div>
                     <section>
                         <div>
                             <div>
-                                <h1 className="text-4xl font-extrabold">
+                                <h1 className=" mt-5 text-4xl font-extrabold">
                                     {post.title}
                                 </h1>
-                                <p>
+                                <p className="mt-2">
                                     {new Date(post._createdAt).toLocaleDateString("en-US", {
                                         day: "numeric",
                                         month: "long",
@@ -71,7 +73,7 @@ async function Post({ params: { slug } }: Props) {
                                     })}
                                 </p>
                             </div>
-                            <div className="flex items-center space-x-2">
+                            <div className=" mt-2 flex items-center space-x-2">
                                 <Image
                                     className="rounded-full"
                                     src={urlFor(post.author.image).url()}
@@ -86,8 +88,8 @@ async function Post({ params: { slug } }: Props) {
                             </div>
                         </div>
                         <div>
-                            <h2>{post.description}</h2>
-                            <div>
+                            <h2 className="mt-2">{post.description}</h2>
+                            <div className="mt-2">
                                 {post.categories.map((category) => (
                                     <p key={category._id}>
                                         {category.title}
@@ -98,7 +100,9 @@ async function Post({ params: { slug } }: Props) {
                     </section>
                 </div>
             </section>
-            <PortableText value={post.body} components={RichTextComponents}></PortableText>
+            <section className="m-5">
+                <PortableText value={post.body} components={RichTextComponents}></PortableText>
+            </section>
         </article>
     )
 }
